@@ -1,6 +1,10 @@
-# Statyczna strona, bez budowania — publikujemy katalog główny.
+# Strona (public/) bez budowania + funkcja do wspólnych danych (netlify/functions/).
 [build]
-  publish = "."
+  publish = "public"
+  functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "22"
 
 # Service worker i strona zawsze świeże, żeby aktualizacje docierały na telefon.
 [[headers]]
@@ -10,5 +14,10 @@
 
 [[headers]]
   for = "/index.html"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/"
   [headers.values]
     Cache-Control = "no-cache"
